@@ -14,6 +14,7 @@ A set of forcing from reanalysis is necessary.
 An example for nudging dataset is as following:
 big:  /lfs/home/ychwang/DATA_NUDGE_ERAITM/
 
+```
 netcdf interim_fv_2011062600_2011062618_TQUSVS.nc.n3 {
 dimensions:
         lon = 288 ;
@@ -122,4 +123,4 @@ variables:
                 datesec:long_name = "seconds to complete current date" ;
                 datesec:units = "seconds" ;
 }
-
+```
