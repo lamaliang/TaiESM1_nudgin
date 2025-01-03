@@ -1,13 +1,15 @@
 # taiesm1_nudging
-created: Dec 27, 2024
-This is the code base for nudging utility for TaiESM1.
-The original code is from NCAR for CESM1.0.
 
-fortran code:
-namelist setup: 
+created: Dec 27, 2024  
+This is the code base for nudging utility for TaiESM1.  
+The original code is from NCAR for CESM1.0.  
 
-Reference: 
-Ma et al. (2015):
+Including the 
+* code_nudge.f90: fortran code for nudging   
+* cam_nl_: namelist setup:   
+
+## Reference:  
+Ma et al. (2015):  
 
 ## Nudging forcing ##
 A set of forcing from reanalysis is necessary.
