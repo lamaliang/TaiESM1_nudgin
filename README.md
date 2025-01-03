@@ -1,18 +1,16 @@
 # taiesm1_nudging
 
 created: Dec 27, 2024  
-This is the code base for nudging utility for TaiESM1.  
-The original code is from NCAR for CESM1.0.  
+This is the code base for nudging utility for TaiESM1. The original code is from NCAR for CESM1.0.  
 
-Including the 
-* code_nudge.f90: fortran code for nudging   
-* cam_nl_: namelist setup:   
+* code_nudge.f90: fortran code for nudging utility.   
+* user_nl_cam   : namelist setup for nudging. Options can be found in the file.
 
 ## Reference:  
 Ma et al. (2015):  
 
 ## Nudging forcing ##
-A set of forcing from reanalysis is necessary.
+A set of forcing from reanalysis is necessary for nudging run.
 An example for nudging dataset is as following:
 big:  /lfs/home/ychwang/DATA_NUDGE_ERAITM/
 
