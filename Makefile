@@ -3,27 +3,33 @@
 #
 # By Hsin-Chien Liang @ LCCR/RCEC Academia Sinica 2016.12.27
 # ------------------------------------------------------------------------------
+FC       := mpiifort
 
-FC       := ifort 
-FFLAGS   := -g -O2 -r8
-INCLUDES := -I${NETCDF}/include -I/work/j07hsu00/taiesm_work/f02.t12.B2000.hi22f2/bld/intel/intelmpi/nodebug/nothreads/include
-LIBS     := -L${NETCDF}/lib -lnetcdff -lnetcdf -lz 
+FFLAGS   := -ip -qno-opt-dynamic-align -fp-model source -convert big_endian -assume byterecl -ftz -traceback -assume realloc_lhs -O2 -xAVX -r8 -fpp
 
-TARGETS  := code_nudge.exe 
+CFLAGS   := -O2 -fp-model precise -xAVX
 
-MOD_PATH := /work/j07hsu00/taiesm_work/f02.t12.B2000.hi22f2/bld/bld/atm/obj
-MOD_FILES := $(wildcard $(MOD_PATH)/*.mod)
+CPPDEFS  := -DFORTRANUNDERSCORE -DNO_R16 -DLinux -DCPRINTEL
+
+INCLUDES := -I$(NETCDF_PATH)/include -I$(HDF5_PATH)/include -I./modules
+LIBS     := -L$(NETCDF_PATH)/lib -lnetcdff -lnetcdf \
+            -L$(HDF5_PATH)/lib -lhdf5_hl -lhdf5 \
+            -L./modules
+
+TARGETS  := code_nudge.exe
+OBJECTS  := modules/phys_grid.o modules/mpishorthand.o modules/time_manager.o
 
 all: $(TARGETS)
 
-code_nudge.exe: code_nudge.o $(MOD_FILES)
-	$(FC) -o $@ $^ $(OBJECTS) $(LIBS)
+$(TARGETS): code_nudge.o $(OBJECTS)
+	$(FC) $(FFLAGS) $(CPPDEFS) -o $@ $^ $(LIBS)
 
-code_nudge.o: code_nudge.f90 $(OBJECTS) $(MOD_FILES)
-	$(FC) $(FFLAGS) $(INCLUDES) -c -o $@ $<
+code_nudge.o: code_nudge.f90 $(OBJECTS)
+	$(FC) $(FFLAGS) $(CPPDEFS) $(INCLUDES) -c -o $@ $<
 
 %.o: %.f90
-	$(FC) $(FFLAGS) $(INCLUDES) -c -o $@ $<
+	$(FC) $(FFLAGS) $(CPPDEFS) $(INCLUDES) -c -o $@ $<
 
 clean:
-	-rm -rf *.o *.mod $(TARGETS)
+	rm -f *.o *.mod $(TARGETS)
+

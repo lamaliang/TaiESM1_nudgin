@@ -1,6 +1,8 @@
 #!/bin/sh
 
 module purge
-module load intel-2022/netcdf_intelmpi-2021/4.9.2 intel-2022/hdf5_intelmpi-2021/1.14.3 
+module use /home/yhtseng00/modulefiles
+module load coda/intel/2022.3.1/intelmpi/netcdf/4.9.2 coda/intel/2022.3.1/intelmpi/pnetcdf/1.8.1
+module load coda/tools/perl/5.16.3 coda/tools/cmake/3.28.4
 
 make
