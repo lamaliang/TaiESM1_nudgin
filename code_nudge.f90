@@ -241,8 +241,8 @@ module  code_nudge
   logical::         Nudge_Model       =.false.
   logical::         Nudge_ON          =.false.
   logical::         Nudge_Initialized =.false.
-  character(len=cl) Nudge_Path
-  character(len=cs) Nudge_File,Nudge_File_Template
+  character(len=SHR_KIND_CL) Nudge_Path
+  character(len=SHR_KIND_CS) Nudge_File,Nudge_File_Template
   integer           Nudge_Force_Opt
   integer           Nudge_Diag_Opt
   integer           Nudge_TSmode
