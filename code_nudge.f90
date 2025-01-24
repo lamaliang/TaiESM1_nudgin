@@ -1,4 +1,4 @@
-Program code_nudge
+module  code_nudge
 !=====================================================================
 !
 ! Purpose: Implement Nudging of the model state of U,V,T,Q, and/or PS
@@ -6092,7 +6092,7 @@ end subroutine phys_timestep_init
 
 end module physpkg
 
-end program code_nudge
+end module code_nudge
 
 module shr_kind_mod
 
